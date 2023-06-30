@@ -1,5 +1,6 @@
 <template>
     <div class="example">{{ msg }}</div>
+    <img src="./assets/img/1.png" alt="">
 </template>
 
 <script>
