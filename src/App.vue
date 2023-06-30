@@ -13,8 +13,10 @@ data() {
 }
 </script>
 
-<style scoped>
-.example {
-    color: red;
+<style lang="scss" scoped>
+.example{
+    background-color: var(--mainColor);
+    user-select: none;
+    color: #333;
 }
 </style>
