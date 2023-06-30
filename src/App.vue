@@ -13,7 +13,7 @@ data() {
 }
 </script>
 
-<style>
+<style scoped>
 .example {
     color: red;
 }
