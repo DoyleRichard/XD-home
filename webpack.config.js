@@ -7,7 +7,11 @@ module.exports = {
     mode: 'development',
     entry: './src/main.ts',
     output: {
+        filename: '[name]-[contenthash].bundle.js',
         path: path.resolve(__dirname, 'dist')
+    },
+    devServer: {
+        static: './dist',
     },
     resolve: {
         // 将 `.ts` 添加为一个可解析的扩展名。

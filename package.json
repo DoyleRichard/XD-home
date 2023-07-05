@@ -4,8 +4,8 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "build": "webpack",
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "start": "npx webpack serve",
+    "build": "webpack"
   },
   "author": "",
   "license": "ISC",
@@ -26,6 +26,7 @@
     "vue-loader": "^17.2.2",
     "vue-template-compiler": "^2.7.14",
     "webpack": "^5.88.1",
-    "webpack-cli": "^5.1.4"
+    "webpack-cli": "^5.1.4",
+    "webpack-dev-server": "^4.15.1"
   }
 }
