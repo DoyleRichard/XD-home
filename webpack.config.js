@@ -14,8 +14,7 @@ module.exports = {
         static: './dist',
     },
     resolve: {
-        // 将 `.ts` 添加为一个可解析的扩展名。
-        extensions: ['.ts', '.js']
+        extensions: ['.ts', '.js', '.tsx', '.json']
     },
     module: {
         rules: [
@@ -26,7 +25,8 @@ module.exports = {
                     { loader: "css-loader", options: { sourceMap: true } },
                     { loader: "postcss-loader", options: { sourceMap: true } },
                     { loader: "sass-loader", options: { sourceMap: true } },
-                ]
+                ],
+                exclude: /node_modules/,
             },
             {
                 test: /\.js$/,
@@ -37,25 +37,24 @@ module.exports = {
                 )
             },
             {
-                test: /\.ts[x]$/,
+                test: /\.ts[x]?$/,
                 loader: 'ts-loader',
+                exclude: /node_modules/,
                 options: { appendTsSuffixTo: [/\.vue$/] }
             },
             {
                 test: /\.vue$/i,
-                use: 'vue-loader'
+                use: 'vue-loader',
+                exclude: /node_modules/,
             },
             {
-                test: /\.(png|jpe?g|gif)$/i,
-                use: [
-                    {
-                        loader: 'file-loader',
-                        options: {
-                            name: '[path][name]-[contenthash].[ext]',
-                        }
-                    }
-                ]
-            }
+                test: /\.(png|svg|jpg|jpeg|gif)$/i,
+                type: 'asset/resource',
+            },
+            {
+                test: /\.(woff|woff2|eot|ttf|otf)$/i,
+                type: 'asset/resource',
+            },
         ]
     },
     plugins: [
