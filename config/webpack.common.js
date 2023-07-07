@@ -4,23 +4,16 @@ const { CleanWebpackPlugin } = require('clean-webpack-plugin');
 const { VueLoaderPlugin } = require('vue-loader')
 const webpack = require('webpack')
 
+
 const env = process.env.NODE_ENV;
-console.log('***运行环境：', env);
+console.log('%c***运行环境：', 'color: red', env);
 
 module.exports = {
-    mode: 'development',
-    entry: './src/main.ts',
-    output: {
-        filename: '[name]-[contenthash].bundle.js',
-        path: path.resolve(__dirname, 'dist')
-    },
-    devServer: {
-        static: './dist',
-    },
+    entry: path.join(__dirname, '..', 'src', 'main.ts'),
     resolve: {
         extensions: ['.ts', '.js', '.tsx', '.json'],
         alias:{
-            "@":path.resolve(__dirname,'src'),
+            "@":path.join(__dirname, '..', 'src'),
         },
     },
     module: {

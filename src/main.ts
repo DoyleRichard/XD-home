@@ -4,4 +4,4 @@ import '@/App.scss'
 
 createApp(App).mount('#app')
 
-console.log( process.env.NODE_ENV )
+console.log('%cRunning Environment：', 'color: red', process.env.NODE_ENV);

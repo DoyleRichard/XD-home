@@ -4,9 +4,9 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "dev": "cross-env NODE_ENV=development npx webpack serve --mode=development",
-    "prod": "cross-env NODE_ENV=production npx webpack serve --mode=production",
-    "build": "webpack"
+    "dev": "cross-env NODE_ENV=development webpack serve --config config/webpack.dev.js",
+    "prod": "cross-env NODE_ENV=production webpack serve --config config/webpack.dev.js",
+    "build": "cross-env NODE_ENV=production webpack --config config/webpack.prod.js"
   },
   "author": "",
   "license": "ISC",
