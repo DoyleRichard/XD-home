@@ -19,24 +19,6 @@ module.exports = {
     module: {
         rules: [
             {
-                test: /\.[s][ac]ss$/i,
-                use: [
-                    { loader: "style-loader" },
-                    { loader: "css-loader", options: { sourceMap: true } },
-                    { loader: "postcss-loader", options: { sourceMap: true } },
-                    { loader: "sass-loader", options: { sourceMap: true } },
-                ],
-                exclude: /node_modules/,
-            },
-            {
-                test: /\.js$/,
-                loader: 'babel-loader',
-                exclude: file => (
-                    // 为了确保 JS 的转译应用到 node_modules 的 Vue 单文件组件
-                    /node_modules/.test(file) && !/\.vue\.js/.test(file)
-                )
-            },
-            {
                 test: /\.ts[x]?$/,
                 loader: 'ts-loader',
                 exclude: /node_modules/,
