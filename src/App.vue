@@ -1,11 +1,12 @@
 <script setup lang="ts">
-    import { ref } from 'vue';
-    const message = ref<string>('hello world!')
 </script>
 
 <template>
-    <div>{{ message }}</div>
+    <router-view></router-view>
 </template>
 
 <style lang="scss" scoped>
+    .home{
+        color: #333;
+    }
 </style>

@@ -32,7 +32,9 @@
     "webpack-dev-server": "^4.15.1"
   },
   "dependencies": {
+    "@babel/preset-env": "^7.22.7",
     "lodash": "^4.17.21",
-    "mini-css-extract-plugin": "^2.7.6"
+    "mini-css-extract-plugin": "^2.7.6",
+    "vue-router": "^4.2.4"
   }
 }
