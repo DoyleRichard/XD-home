@@ -5,36 +5,36 @@ export const isArray = Array.isArray
 // These helpers produce better VM code in JS engines due to their
 // explicitness and function inlining.
 export function isUndef(v: any): v is undefined | null {
-    return v === undefined || v === null
+	return v === undefined || v === null
 }
 
 export function isDef<T>(v: T): v is NonNullable<T> {
-    return v !== undefined && v !== null
+	return v !== undefined && v !== null
 }
 
 export function isTrue(v: any): boolean {
-    return v === true
+	return v === true
 }
 
 export function isFalse(v: any): boolean {
-    return v === false
+	return v === false
 }
 
 /**
  * Check if value is primitive.
  */
 export function isPrimitive(value: any): boolean {
-    return (
-        typeof value === 'string' ||
-        typeof value === 'number' ||
-        // $flow-disable-line
-        typeof value === 'symbol' ||
-        typeof value === 'boolean'
-    )
+	return (
+		typeof value === 'string' ||
+		typeof value === 'number' ||
+		// $flow-disable-line
+		typeof value === 'symbol' ||
+		typeof value === 'boolean'
+	)
 }
 
 export function isFunction(value: any): value is (...args: any[]) => any {
-    return typeof value === 'function'
+	return typeof value === 'function'
 }
 
 /**
@@ -43,7 +43,7 @@ export function isFunction(value: any): value is (...args: any[]) => any {
  * is a JSON-compliant type.
  */
 export function isObject(obj: any): boolean {
-    return obj !== null && typeof obj === 'object'
+	return obj !== null && typeof obj === 'object'
 }
 
 /**
@@ -52,7 +52,7 @@ export function isObject(obj: any): boolean {
 const _toString = Object.prototype.toString
 
 export function toRawType(value: any): string {
-    return _toString.call(value).slice(8, -1)
+	return _toString.call(value).slice(8, -1)
 }
 
 /**
@@ -60,38 +60,34 @@ export function toRawType(value: any): string {
  * for plain JavaScript objects.
  */
 export function isPlainObject(obj: any): boolean {
-    return _toString.call(obj) === '[object Object]'
+	return _toString.call(obj) === '[object Object]'
 }
 
 export function isRegExp(v: any): v is RegExp {
-    return _toString.call(v) === '[object RegExp]'
+	return _toString.call(v) === '[object RegExp]'
 }
 
 /**
  * Check if val is a valid array index.
  */
 export function isValidArrayIndex(val: any): boolean {
-    const n = parseFloat(String(val))
-    return n >= 0 && Math.floor(n) === n && isFinite(val)
+	const n = parseFloat(String(val))
+	return n >= 0 && Math.floor(n) === n && isFinite(val)
 }
 
 export function isPromise(val: any): val is Promise<any> {
-    return (
-        isDef(val) &&
-        typeof val.then === 'function' &&
-        typeof val.catch === 'function'
-    )
+	return isDef(val) && typeof val.then === 'function' && typeof val.catch === 'function'
 }
 
 /**
  * Convert a value to a string that is actually rendered.
  */
 export function toString(val: any): string {
-    return val == null
-        ? ''
-        : Array.isArray(val) || (isPlainObject(val) && val.toString === _toString)
-            ? JSON.stringify(val, null, 2)
-            : String(val)
+	return val == null
+		? ''
+		: Array.isArray(val) || (isPlainObject(val) && val.toString === _toString)
+			? JSON.stringify(val, null, 2)
+			: String(val)
 }
 
 /**
@@ -99,8 +95,8 @@ export function toString(val: any): string {
  * If the conversion fails, return original string.
  */
 export function toNumber(val: string): number | string {
-    const n = parseFloat(val)
-    return isNaN(n) ? val : n
+	const n = parseFloat(val)
+	return isNaN(n) ? val : n
 }
 
 /**
@@ -108,15 +104,15 @@ export function toNumber(val: string): number | string {
  * is in that map.
  */
 export function makeMap(
-    str: string,
-    expectsLowerCase?: boolean
+	str: string,
+	expectsLowerCase?: boolean
 ): (key: string) => true | undefined {
-    const map = Object.create(null)
-    const list: Array<string> = str.split(',')
-    for (let i = 0; i < list.length; i++) {
-        map[list[i]] = true
-    }
-    return expectsLowerCase ? val => map[val.toLowerCase()] : val => map[val]
+	const map = Object.create(null)
+	const list: Array<string> = str.split(',')
+	for (let i = 0; i < list.length; i++) {
+		map[list[i]] = true
+	}
+	return expectsLowerCase ? (val) => map[val.toLowerCase()] : (val) => map[val]
 }
 
 /**
@@ -133,18 +129,18 @@ export const isReservedAttribute = makeMap('key,ref,slot,slot-scope,is')
  * Remove an item from an array.
  */
 export function remove(arr: Array<any>, item: any): Array<any> | void {
-    const len = arr.length
-    if (len) {
-        // fast path for the only / last item
-        if (item === arr[len - 1]) {
-            arr.length = len - 1
-            return
-        }
-        const index = arr.indexOf(item)
-        if (index > -1) {
-            return arr.splice(index, 1)
-        }
-    }
+	const len = arr.length
+	if (len) {
+		// fast path for the only / last item
+		if (item === arr[len - 1]) {
+			arr.length = len - 1
+			return
+		}
+		const index = arr.indexOf(item)
+		if (index > -1) {
+			return arr.splice(index, 1)
+		}
+	}
 }
 
 /**
@@ -152,18 +148,18 @@ export function remove(arr: Array<any>, item: any): Array<any> | void {
  */
 const hasOwnProperty = Object.prototype.hasOwnProperty
 export function hasOwn(obj: Object | Array<any>, key: string): boolean {
-    return hasOwnProperty.call(obj, key)
+	return hasOwnProperty.call(obj, key)
 }
 
 /**
  * Create a cached version of a pure function.
  */
 export function cached<R>(fn: (str: string) => R): (sr: string) => R {
-    const cache: Record<string, R> = Object.create(null)
-    return function cachedFn(str: string) {
-        const hit = cache[str]
-        return hit || (cache[str] = fn(str))
-    }
+	const cache: Record<string, R> = Object.create(null)
+	return function cachedFn(str: string) {
+		const hit = cache[str]
+		return hit || (cache[str] = fn(str))
+	}
 }
 
 /**
@@ -171,14 +167,14 @@ export function cached<R>(fn: (str: string) => R): (sr: string) => R {
  */
 const camelizeRE = /-(\w)/g
 export const camelize = cached((str: string): string => {
-    return str.replace(camelizeRE, (_, c) => (c ? c.toUpperCase() : ''))
+	return str.replace(camelizeRE, (_, c) => (c ? c.toUpperCase() : ''))
 })
 
 /**
  * Capitalize a string.
  */
 export const capitalize = cached((str: string): string => {
-    return str.charAt(0).toUpperCase() + str.slice(1)
+	return str.charAt(0).toUpperCase() + str.slice(1)
 })
 
 /**
@@ -186,7 +182,7 @@ export const capitalize = cached((str: string): string => {
  */
 const hyphenateRE = /\B([A-Z])/g
 export const hyphenate = cached((str: string): string => {
-    return str.replace(hyphenateRE, '-$1').toLowerCase()
+	return str.replace(hyphenateRE, '-$1').toLowerCase()
 })
 
 /**
@@ -199,21 +195,17 @@ export const hyphenate = cached((str: string): string => {
 
 /* istanbul ignore next */
 function polyfillBind(fn: Function, ctx: Object): Function {
-    function boundFn(a: any) {
-        const l = arguments.length
-        return l
-            ? l > 1
-                ? fn.apply(ctx, arguments)
-                : fn.call(ctx, a)
-            : fn.call(ctx)
-    }
+	function boundFn(a: any) {
+		const l = arguments.length
+		return l ? (l > 1 ? fn.apply(ctx, arguments) : fn.call(ctx, a)) : fn.call(ctx)
+	}
 
-    boundFn._length = fn.length
-    return boundFn
+	boundFn._length = fn.length
+	return boundFn
 }
 
 function nativeBind(fn: Function, ctx: Object): Function {
-    return fn.bind(ctx)
+	return fn.bind(ctx)
 }
 
 // @ts-expect-error bind cannot be `undefined`
@@ -223,39 +215,39 @@ export const bind = Function.prototype.bind ? nativeBind : polyfillBind
  * Convert an Array-like object to a real Array.
  */
 export function toArray(list: any, start?: number): Array<any> {
-    start = start || 0
-    let i = list.length - start
-    const ret: Array<any> = new Array(i)
-    while (i--) {
-        ret[i] = list[i + start]
-    }
-    return ret
+	start = start || 0
+	let i = list.length - start
+	const ret: Array<any> = new Array(i)
+	while (i--) {
+		ret[i] = list[i + start]
+	}
+	return ret
 }
 
 /**
  * Mix properties into target object.
  */
 export function extend(
-    to: Record<PropertyKey, any>,
-    _from?: Record<PropertyKey, any>
+	to: Record<PropertyKey, any>,
+	_from?: Record<PropertyKey, any>
 ): Record<PropertyKey, any> {
-    for (const key in _from) {
-        to[key] = _from[key]
-    }
-    return to
+	for (const key in _from) {
+		to[key] = _from[key]
+	}
+	return to
 }
 
 /**
  * Merge an Array of Objects into a single Object.
  */
 export function toObject(arr: Array<any>): object {
-    const res = {}
-    for (let i = 0; i < arr.length; i++) {
-        if (arr[i]) {
-            extend(res, arr[i])
-        }
-    }
-    return res
+	const res = {}
+	for (let i = 0; i < arr.length; i++) {
+		if (arr[i]) {
+			extend(res, arr[i])
+		}
+	}
+	return res
 }
 
 /* eslint-disable no-unused-vars */
@@ -265,7 +257,7 @@ export function toObject(arr: Array<any>): object {
  * Stubbing args to make Flow happy without leaving useless transpiled code
  * with ...rest (https://flow.org/blog/2017/05/07/Strict-Function-Call-Arity/).
  */
-export function noop(a?: any, b?: any, c?: any) { }
+export function noop(a?: any, b?: any, c?: any) {}
 
 /**
  * Always return false.
@@ -283,11 +275,9 @@ export const identity = (_: any) => _
  * Generate a string containing static keys from compiler modules.
  */
 export function genStaticKeys(
-    modules: Array<{ staticKeys?: string[] } /* ModuleOptions */>
+	modules: Array<{ staticKeys?: string[] } /* ModuleOptions */>
 ): string {
-    return modules
-        .reduce<string[]>((keys, m) => keys.concat(m.staticKeys || []), [])
-        .join(',')
+	return modules.reduce<string[]>((keys, m) => keys.concat(m.staticKeys || []), []).join(',')
 }
 
 /**
@@ -295,44 +285,44 @@ export function genStaticKeys(
  * if they are plain objects, do they have the same shape?
  */
 export function looseEqual(a: any, b: any): boolean {
-    if (a === b) return true
-    const isObjectA = isObject(a)
-    const isObjectB = isObject(b)
-    if (isObjectA && isObjectB) {
-        try {
-            const isArrayA = Array.isArray(a)
-            const isArrayB = Array.isArray(b)
-            if (isArrayA && isArrayB) {
-                return (
-                    a.length === b.length &&
-                    a.every((e: any, i: any) => {
-                        return looseEqual(e, b[i])
-                    })
-                )
-            } else if (a instanceof Date && b instanceof Date) {
-                return a.getTime() === b.getTime()
-            } else if (!isArrayA && !isArrayB) {
-                const keysA = Object.keys(a)
-                const keysB = Object.keys(b)
-                return (
-                    keysA.length === keysB.length &&
-                    keysA.every(key => {
-                        return looseEqual(a[key], b[key])
-                    })
-                )
-            } else {
-                /* istanbul ignore next */
-                return false
-            }
-        } catch (e: any) {
-            /* istanbul ignore next */
-            return false
-        }
-    } else if (!isObjectA && !isObjectB) {
-        return String(a) === String(b)
-    } else {
-        return false
-    }
+	if (a === b) return true
+	const isObjectA = isObject(a)
+	const isObjectB = isObject(b)
+	if (isObjectA && isObjectB) {
+		try {
+			const isArrayA = Array.isArray(a)
+			const isArrayB = Array.isArray(b)
+			if (isArrayA && isArrayB) {
+				return (
+					a.length === b.length &&
+					a.every((e: any, i: any) => {
+						return looseEqual(e, b[i])
+					})
+				)
+			} else if (a instanceof Date && b instanceof Date) {
+				return a.getTime() === b.getTime()
+			} else if (!isArrayA && !isArrayB) {
+				const keysA = Object.keys(a)
+				const keysB = Object.keys(b)
+				return (
+					keysA.length === keysB.length &&
+					keysA.every((key) => {
+						return looseEqual(a[key], b[key])
+					})
+				)
+			} else {
+				/* istanbul ignore next */
+				return false
+			}
+		} catch (e: any) {
+			/* istanbul ignore next */
+			return false
+		}
+	} else if (!isObjectA && !isObjectB) {
+		return String(a) === String(b)
+	} else {
+		return false
+	}
 }
 
 /**
@@ -341,30 +331,30 @@ export function looseEqual(a: any, b: any): boolean {
  * contain an object of the same shape), or -1 if it is not present.
  */
 export function looseIndexOf(arr: Array<unknown>, val: unknown): number {
-    for (let i = 0; i < arr.length; i++) {
-        if (looseEqual(arr[i], val)) return i
-    }
-    return -1
+	for (let i = 0; i < arr.length; i++) {
+		if (looseEqual(arr[i], val)) return i
+	}
+	return -1
 }
 
 /**
  * Ensure a function is called only once.
  */
 export function once<T extends (...args: any[]) => any>(fn: T): T {
-    let called = false
-    return function () {
-        if (!called) {
-            called = true
-            fn.apply(this, arguments as any)
-        }
-    } as any
+	let called = false
+	return function () {
+		if (!called) {
+			called = true
+			fn.apply(this, arguments as any)
+		}
+	} as any
 }
 
 // https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object/is#polyfill
 export function hasChanged(x: unknown, y: unknown): boolean {
-    if (x === y) {
-        return x === 0 && 1 / x !== 1 / (y as number)
-    } else {
-        return x === x || y === y
-    }
+	if (x === y) {
+		return x === 0 && 1 / x !== 1 / (y as number)
+	} else {
+		return x === x || y === y
+	}
 }

@@ -1,19 +1,16 @@
 {
-    "compilerOptions": {
-        "baseUrl": ".",
-        "target": "esnext",
-        "module": "commonjs", // 解决 TS2792: Cannot find module 'vue'.
-        "strict": true, // 开启才可以获得对组件选项中 this 的类型检查
-        "isolatedModules": true, // 如果用 esbuild，就需要 isolatedModules
-        "paths": {
-            "@/*": ["src/*"], // 如果在构建工具中配置了路径解析别名，需要在这里也配置一遍
-        },
-        "noImplicitAny": false,
-        "noImplicitThis": false, // 解决 'this' implicitly has type 'any' because it does not have a type annotation.
-        "sourceMap": true,
-    },
-    "exclude": [
-        "node_modules",
-        "dist"
-    ]
+	"compilerOptions": {
+		"baseUrl": ".",
+		"target": "esnext",
+		"module": "commonjs", // 解决 TS2792: Cannot find module 'vue'.
+		"strict": true, // 开启才可以获得对组件选项中 this 的类型检查
+		"isolatedModules": true, // 如果用 esbuild，就需要 isolatedModules
+		"paths": {
+			"@/*": ["src/*"] // 如果在构建工具中配置了路径解析别名，需要在这里也配置一遍
+		},
+		"noImplicitAny": false,
+		"noImplicitThis": false, // 解决 'this' implicitly has type 'any' because it does not have a type annotation.
+		"sourceMap": true
+	},
+	"exclude": ["node_modules", "dist"]
 }
