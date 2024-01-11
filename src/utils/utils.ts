@@ -358,3 +358,13 @@ export function hasChanged(x: unknown, y: unknown): boolean {
 		return x === x || y === y
 	}
 }
+
+export function debounce<T extends (...args: any[]) => any>(fn: T, delay: number = 200): T {
+	let timer = null as unknown as NodeJS.Timeout
+	return function () {
+		timer && clearTimeout(timer)
+		timer = setTimeout(() => {
+			fn.apply(this, arguments as any)
+		}, delay)
+	} as any
+}

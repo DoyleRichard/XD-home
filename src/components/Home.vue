@@ -1,12 +1,17 @@
 <script setup lang="ts">
-	import { ref } from 'vue'
-	const hello = ref<string>('button')
+	import { useRouter } from 'vue-router'
+	const router = useRouter()
+	const goWaterFallPage = () => {
+		router.push({ path: '/watarFall' })
+	}
 </script>
 
 <template>
-	<div class="helloBtn">{{ hello }}</div>
-	<div class="helloAnimationBtn">{{ hello }}</div>
-	<h1 class="text-3xl font-bold underline">Hello world!</h1>
+	<div class="container flex mx-auto">
+		<div class="font-bold helloBtn" @click="goWaterFallPage">water-fall(瀑布流)</div>
+	</div>
+	<!-- <div class="helloAnimationBtn">{{ hello }}</div>
+	<h1 class="text-3xl font-bold underline">Hello world!</h1> -->
 </template>
 
 <style scoped lang="scss">
