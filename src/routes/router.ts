@@ -1,5 +1,6 @@
 import Home from '@/components/Home.vue'
 import WaterFall from '@/components/WaterFall.vue'
+import VirtualList from '@/components/VirtualList.vue'
 
 const routes = [
 	{
@@ -9,6 +10,10 @@ const routes = [
 	{
 		path: '/watarFall',
 		component: WaterFall
+	},
+	{
+		path: '/virtualList',
+		component: VirtualList
 	}
 ]
 

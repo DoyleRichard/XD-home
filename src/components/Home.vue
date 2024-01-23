@@ -1,20 +1,20 @@
 <script setup lang="ts">
 	import { useRouter } from 'vue-router'
 	const router = useRouter()
-	const goWaterFallPage = () => {
-		router.push({ path: '/watarFall' })
-	}
+	const goWaterFallPage = () => router.push({ path: '/watarFall' })
+	const goVirtualListPage = () => router.push({ path: '/VirtualList' })
 </script>
 
 <template>
-	<div class="container flex mx-auto my-4">
-		<div class="font-bold helloBtn" @click="goWaterFallPage">water-fall(瀑布流)</div>
+	<div class="container flex flex-wrap items-center h-screen mx-auto justify-evenly">
+		<div class="helloBtn" @click="goWaterFallPage">water-fall(瀑布流)</div>
+		<div class="helloBtn" @click="goVirtualListPage">virtual-list(虚拟列表)</div>
 	</div>
 	<!-- <div class="helloAnimationBtn">Hello world!</div> -->
 </template>
 
 <style scoped lang="scss">
-	$btn-width: 150px;
+	$btn-width: 200px;
 	$btn-height: 50px;
 	$clip-length: 30px;
 	$duration: 3s;
@@ -24,6 +24,7 @@
 		text-align: center;
 		line-height: $btn-height;
 		position: relative;
+		cursor: pointer;
 
 		&::before,
 		&::after {

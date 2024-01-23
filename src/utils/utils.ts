@@ -360,3 +360,16 @@ export function debounce<T extends (...args: any[]) => any>(fn: T, delay: number
 		}, delay)
 	} as any
 }
+
+export function throttle<T extends (...args: any[]) => any>(fn: T, delay: number = 200): T {
+	let timer = null as unknown as NodeJS.Timeout
+	return function () {
+		if (timer) {
+			return
+		}
+		timer = setTimeout(() => {
+			fn.apply(this, arguments as any)
+			timer = null as unknown as NodeJS.Timeout
+		}, delay)
+	} as any
+}
