@@ -6,6 +6,7 @@ module.exports = merge(webpackCommonConf, {
 	devServer: {
 		port: 6324
 	},
+	devtool: 'cheap-module-source-map', // 更快，适合开发阶段
 	module: {
 		rules: [
 			{
@@ -32,7 +33,7 @@ module.exports = merge(webpackCommonConf, {
 					 */
 					cacheDirectory: true
 				},
-				exclude: (file) =>
+				exclude: file =>
 					// 为了确保 JS 的转译应用到 node_modules 的 Vue 单文件组件
 					/node_modules/.test(file) && !/\.vue\.js/.test(file)
 			}

@@ -103,16 +103,13 @@ export function toNumber(val: string): number | string {
  * Make a map and return a function for checking if a key
  * is in that map.
  */
-export function makeMap(
-	str: string,
-	expectsLowerCase?: boolean
-): (key: string) => true | undefined {
+export function makeMap(str: string, expectsLowerCase?: boolean): (key: string) => true | undefined {
 	const map = Object.create(null)
 	const list: Array<string> = str.split(',')
 	for (let i = 0; i < list.length; i++) {
 		map[list[i]] = true
 	}
-	return expectsLowerCase ? (val) => map[val.toLowerCase()] : (val) => map[val]
+	return expectsLowerCase ? val => map[val.toLowerCase()] : val => map[val]
 }
 
 /**
@@ -227,10 +224,7 @@ export function toArray(list: any, start?: number): Array<any> {
 /**
  * Mix properties into target object.
  */
-export function extend(
-	to: Record<PropertyKey, any>,
-	_from?: Record<PropertyKey, any>
-): Record<PropertyKey, any> {
+export function extend(to: Record<PropertyKey, any>, _from?: Record<PropertyKey, any>): Record<PropertyKey, any> {
 	for (const key in _from) {
 		to[key] = _from[key]
 	}
@@ -274,9 +268,7 @@ export const identity = (_: any) => _
 /**
  * Generate a string containing static keys from compiler modules.
  */
-export function genStaticKeys(
-	modules: Array<{ staticKeys?: string[] } /* ModuleOptions */>
-): string {
+export function genStaticKeys(modules: Array<{ staticKeys?: string[] } /* ModuleOptions */>): string {
 	return modules.reduce<string[]>((keys, m) => keys.concat(m.staticKeys || []), []).join(',')
 }
 
@@ -306,7 +298,7 @@ export function looseEqual(a: any, b: any): boolean {
 				const keysB = Object.keys(b)
 				return (
 					keysA.length === keysB.length &&
-					keysA.every((key) => {
+					keysA.every(key => {
 						return looseEqual(a[key], b[key])
 					})
 				)

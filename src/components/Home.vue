@@ -7,11 +7,10 @@
 </script>
 
 <template>
-	<div class="container flex mx-auto">
+	<div class="container flex mx-auto my-4">
 		<div class="font-bold helloBtn" @click="goWaterFallPage">water-fall(瀑布流)</div>
 	</div>
-	<!-- <div class="helloAnimationBtn">{{ hello }}</div>
-	<h1 class="text-3xl font-bold underline">Hello world!</h1> -->
+	<!-- <div class="helloAnimationBtn">Hello world!</div> -->
 </template>
 
 <style scoped lang="scss">

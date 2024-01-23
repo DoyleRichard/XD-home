@@ -78,7 +78,7 @@
 	// 排列瀑布流元素
 	const arrangeWaterFallElem = (waterFallWrapperElement: HTMLDivElement) => {
 		fallLineHeightList = new Array(waterFallAttr.colNum).fill(0)
-		waterFallWrapperElement.childNodes.forEach((itemElement) => {
+		waterFallWrapperElement.childNodes.forEach(itemElement => {
 			// 每个 water-fall 元素
 			const divItemElem = itemElement as HTMLDivElement
 			const lowestInfo = findLowestFallLine()
@@ -89,8 +89,7 @@
 			divItemElem.style.width = `${currentElemWidth}px`
 			divItemElem.style.top = `${lowestInfo.height}px`
 			divItemElem.style.left = `${
-				(currentElemWidth + waterFallAttr.colGap) *
-				(lowestInfo.index % waterFallAttr.colNum)
+				(currentElemWidth + waterFallAttr.colGap) * (lowestInfo.index % waterFallAttr.colNum)
 			}px`
 			fallLineHeightList[lowestInfo.index] += currentElemHeight + waterFallAttr.rowGap
 		})
@@ -107,12 +106,6 @@
 
 <template>
 	<div class="container flex mx-auto">
-		<div class="relative water-fall-wrapper" ref="waterFallWrapper"></div>
+		<div class="relative w-full water-fall-wrapper" ref="waterFallWrapper"></div>
 	</div>
 </template>
-
-<style scoped lang="scss">
-	.water-fall-wrapper {
-		width: 100%;
-	}
-</style>

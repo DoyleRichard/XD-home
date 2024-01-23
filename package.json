@@ -5,7 +5,7 @@
 	"main": "index.js",
 	"scripts": {
 		"dev": "npm run formatCode && cross-env NODE_ENV=development webpack serve --config config/webpack.dev.js",
-		"prod": "npm run formatCode && cross-env NODE_ENV=production webpack serve --config config/webpack.dev.js",
+		"prod": "npm run formatCode && cross-env NODE_ENV=production webpack serve --config config/webpack.prod.js",
 		"build": "npm run formatCode && cross-env NODE_ENV=production webpack --config config/webpack.prod.js",
 		"formatCode": "prettier --write ."
 	},
@@ -17,6 +17,7 @@
 		"clean-webpack-plugin": "^4.0.0",
 		"cross-env": "^7.0.3",
 		"css-loader": "^6.8.1",
+		"doyle-concurrency-control": "^1.0.4",
 		"html-webpack-plugin": "^5.5.3",
 		"lodash": "^4.17.21",
 		"mini-css-extract-plugin": "^2.7.6",
