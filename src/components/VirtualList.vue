@@ -1,7 +1,8 @@
 <script setup lang="ts">
-	import { onMounted, reactive, ref } from 'vue'
-	import { throttle } from '@/utils/utils'
+	import { onMounted, onUnmounted, reactive, ref } from 'vue'
+	import { throttle, CreateThrottle } from '@/utils/utils'
 
+	const createThrottle = new CreateThrottle()
 	const options = reactive({
 		itemNumber: 1000000,
 		viewHeight: 600,
@@ -15,6 +16,7 @@
 	const vListWrapper = ref(null)
 	let RootElement = null as unknown as HTMLDivElement
 	let listContainer = null as unknown as HTMLDivElement
+	let scrollFunc = null as unknown as (this: HTMLDivElement, ev: Event) => any
 
 	onMounted(() => {
 		RootElement = vListWrapper.value as unknown as HTMLDivElement
@@ -34,13 +36,18 @@
 		initVisibleItems(listContainer, 0)
 	})
 
+	onUnmounted(() => {
+		createThrottle.clean()
+		RootElement.removeEventListener('scroll', scrollFunc)
+	})
+
 	const addScrollListener = () => {
-		RootElement.addEventListener(
-			'scroll',
-			throttle(() => {
-				initVisibleItems(listContainer, RootElement.scrollTop)
-			}, options.throttleDelay)
-		)
+		RootElement.removeEventListener('scroll', scrollFunc)
+
+		scrollFunc = createThrottle.create(() => {
+			initVisibleItems(listContainer, RootElement.scrollTop)
+		}, options.throttleDelay)
+		RootElement.addEventListener('scroll', scrollFunc)
 	}
 
 	const initByItemNumber = () => {
@@ -93,7 +100,7 @@
 			<div class="text-white">视窗外缓冲元素个数: {{ options.bufferNumber }}</div>
 			<a-slider v-model:value="options.bufferNumber" :max="1000" />
 			<div class="text-white">滑动界面节流时间: {{ options.throttleDelay }}ms</div>
-			<a-slider v-model:value="options.throttleDelay" :max="1000" />
+			<a-slider v-model:value="options.throttleDelay" :max="1000" @afterChange="addScrollListener" />
 		</div>
 	</div>
 </template>

@@ -373,3 +373,37 @@ export function throttle<T extends (...args: any[]) => any>(fn: T, delay: number
 		}, delay)
 	} as any
 }
+
+export class CreateThrottle {
+	delay = null as unknown as number
+	fn = null as unknown as (...args: any[]) => any
+	returnFunction = null as unknown as (...args: any[]) => any
+
+	constructor() {}
+
+	throttle() {
+		const _CreateThrottle = this
+		let timer = null as unknown as NodeJS.Timeout
+		this.returnFunction = function () {
+			if (!timer) {
+				timer = setTimeout(() => {
+					_CreateThrottle.fn.apply(this, arguments as any)
+					timer = null as unknown as NodeJS.Timeout
+				}, _CreateThrottle.delay)
+			}
+		} as any
+		return this.returnFunction
+	}
+
+	create(fn: (...args: any[]) => any, delay: number = 200) {
+		this.clean()
+		this.fn = fn
+		this.delay = delay
+		return this.throttle()
+	}
+
+	// 清除上一次的闭包函数，防止内存泄漏
+	clean() {
+		this.returnFunction = null as unknown as (...args: any[]) => any
+	}
+}
