@@ -18,7 +18,7 @@
 		"clean-webpack-plugin": "^4.0.0",
 		"cross-env": "^7.0.3",
 		"css-loader": "^6.8.1",
-		"doyle-concurrency-control": "^1.0.4",
+		"doyle-concurrency-control": "^1.1.0",
 		"html-webpack-plugin": "^5.5.3",
 		"lodash": "^4.17.21",
 		"mini-css-extract-plugin": "^2.7.6",

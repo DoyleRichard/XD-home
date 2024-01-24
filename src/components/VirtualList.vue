@@ -81,9 +81,9 @@
 </script>
 
 <template>
-	<div class="flex items-center justify-center w-screen h-screen bg-gray-800 flex">
+	<div class="flex items-center justify-center w-screen h-screen bg-gray-800">
 		<div class="relative overflow-y-scroll bg-gray-300" ref="vListWrapper"></div>
-		<div class="w-60 ml-6">
+		<div class="ml-6 w-60">
 			<div class="text-white">视窗高度: {{ options.viewHeight }}px</div>
 			<a-slider v-model:value="options.viewHeight" :max="options.viewHeight" disabled />
 			<div class="text-white">每个元素高度: {{ options.itemHeight }}px</div>
