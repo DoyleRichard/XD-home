@@ -93,7 +93,7 @@
 			<div class="text-white">视窗外缓冲元素个数: {{ options.bufferNumber }}</div>
 			<a-slider v-model:value="options.bufferNumber" :max="1000" />
 			<div class="text-white">滑动界面节流时间: {{ options.throttleDelay }}ms</div>
-			<a-slider v-model:value="options.throttleDelay" :max="options.throttleDelay" disabled />
+			<a-slider v-model:value="options.throttleDelay" :max="1000" />
 		</div>
 	</div>
 </template>
