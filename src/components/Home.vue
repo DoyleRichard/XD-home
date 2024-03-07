@@ -2,13 +2,15 @@
 	import { useRouter } from 'vue-router'
 	const router = useRouter()
 	const goWaterFallPage = () => router.push({ path: '/watarFall' })
-	const goVirtualListPage = () => router.push({ path: '/VirtualList' })
+	const goVirtualListPage = () => router.push({ path: '/virtualList' })
+	const goRequestAnimationFrame = () => router.push({ path: '/requestAnimationFrame' })
 </script>
 
 <template>
 	<div class="container flex flex-wrap items-center h-screen mx-auto justify-evenly">
-		<div class="helloBtn" @click="goWaterFallPage">water-fall(瀑布流)</div>
-		<div class="helloBtn" @click="goVirtualListPage">virtual-list(虚拟列表)</div>
+		<div class="helloBtn" @click="goWaterFallPage">瀑布流</div>
+		<div class="helloBtn" @click="goVirtualListPage">虚拟列表</div>
+		<div class="helloBtn" @click="goRequestAnimationFrame">分帧渲染</div>
 	</div>
 	<!-- <div class="helloAnimationBtn">Hello world!</div> -->
 </template>

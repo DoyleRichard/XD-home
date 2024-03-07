@@ -1,6 +1,6 @@
 <script setup lang="ts">
 	import { onMounted, onUnmounted, reactive, ref } from 'vue'
-	import { throttle, CreateThrottle } from '@/utils/utils'
+	import { CreateThrottle } from '@/utils/utils'
 
 	const createThrottle = new CreateThrottle()
 	const options = reactive({
