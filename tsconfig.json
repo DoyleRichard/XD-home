@@ -10,7 +10,12 @@
 		},
 		"noImplicitAny": false,
 		"noImplicitThis": false, // 解决 'this' implicitly has type 'any' because it does not have a type annotation.
-		"sourceMap": true
+		"sourceMap": true,
+		"skipLibCheck": true, // 跳过对第三方库的类型检查，只检查项目代码
+		"moduleResolution": "node",
+		"esModuleInterop": true,
+		"allowSyntheticDefaultImports": true
 	},
+	"include": ["src/**/*", "shims-vue.d.ts"],
 	"exclude": ["node_modules", "dist"]
 }

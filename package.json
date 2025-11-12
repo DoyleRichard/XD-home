@@ -6,8 +6,12 @@
 	"scripts": {
 		"dev": "npm run formatCode && cross-env NODE_ENV=development webpack serve --config config/webpack.dev.js",
 		"prod": "npm run formatCode && cross-env NODE_ENV=production webpack serve --config config/webpack.prod.js",
-		"build": "npm run formatCode && cross-env NODE_ENV=production webpack --config config/webpack.prod.js",
-		"formatCode": "prettier --write ."
+		"build": "cross-env NODE_ENV=production webpack --config config/webpack.prod.js",
+		"formatCode": "prettier --write .",
+		"format:check": "prettier --check .",
+		"type-check": "tsc --noEmit",
+		"lint": "npm run format:check && npm run type-check",
+		"ci": "npm ci && npm run lint && npm run build"
 	},
 	"author": "",
 	"license": "ISC",
