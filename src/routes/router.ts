@@ -1,24 +1,20 @@
-import Home from '@/components/Home.vue'
-import WaterFall from '@/components/WaterFall.vue'
-import VirtualList from '@/components/VirtualList.vue'
-import RequestAnimationFrame from '@/components/RequestAnimationFrame.vue'
-
+// 使用动态导入实现路由懒加载，减少初始包体积
 const routes = [
 	{
 		path: '/',
-		component: Home
+		component: () => import(/* webpackChunkName: "home" */ '@/components/Home.vue')
 	},
 	{
-		path: '/watarFall',
-		component: WaterFall
+		path: '/waterFall',
+		component: () => import(/* webpackChunkName: "waterfall" */ '@/components/WaterFall.vue')
 	},
 	{
 		path: '/virtualList',
-		component: VirtualList
+		component: () => import(/* webpackChunkName: "virtual-list" */ '@/components/VirtualList.vue')
 	},
 	{
 		path: '/requestAnimationFrame',
-		component: RequestAnimationFrame
+		component: () => import(/* webpackChunkName: "request-animation" */ '@/components/RequestAnimationFrame.vue')
 	}
 ]
 

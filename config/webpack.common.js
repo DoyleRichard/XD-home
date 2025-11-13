@@ -7,12 +7,23 @@ const env = process.env.NODE_ENV
 console.log('%c***运行环境：', 'color: red', env)
 
 module.exports = {
+	// Use filesystem cache to speed up repeated builds
+	cache: {
+		type: 'filesystem',
+		buildDependencies: {
+			config: [__filename]
+		}
+	},
 	entry: path.join(__dirname, '..', 'src', 'main.ts'),
 	resolve: {
 		extensions: ['.ts', '.js', '.tsx', '.json'],
 		alias: {
 			'@': path.join(__dirname, '..', 'src')
-		}
+		},
+		// 优化模块解析，优先使用 ES 模块
+		mainFields: ['module', 'main'],
+		// 减少模块解析时的搜索路径
+		modules: [path.resolve(__dirname, '..', 'node_modules')]
 	},
 	module: {
 		rules: [

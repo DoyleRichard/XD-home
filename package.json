@@ -3,6 +3,11 @@
 	"version": "1.0.0",
 	"description": "",
 	"main": "index.js",
+	"sideEffects": [
+		"*.css",
+		"*.scss",
+		"*.vue"
+	],
 	"scripts": {
 		"dev": "npm run formatCode && cross-env NODE_ENV=development webpack serve --config config/webpack.dev.js",
 		"prod": "npm run formatCode && cross-env NODE_ENV=production webpack serve --config config/webpack.prod.js",

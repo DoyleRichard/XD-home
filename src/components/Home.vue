@@ -1,7 +1,7 @@
 <script setup lang="ts">
 	import { useRouter } from 'vue-router'
 	const router = useRouter()
-	const goWaterFallPage = () => router.push({ path: '/watarFall' })
+	const goWaterFallPage = () => router.push({ path: '/waterFall' })
 	const goVirtualListPage = () => router.push({ path: '/virtualList' })
 	const goRequestAnimationFrame = () => router.push({ path: '/requestAnimationFrame' })
 </script>
