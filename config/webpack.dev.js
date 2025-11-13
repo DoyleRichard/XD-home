@@ -15,7 +15,13 @@ module.exports = merge(webpackCommonConf, {
 					{ loader: 'style-loader' },
 					{ loader: 'css-loader', options: { sourceMap: true } },
 					{ loader: 'postcss-loader', options: { sourceMap: true } },
-					{ loader: 'sass-loader', options: { sourceMap: true } }
+					{
+						loader: 'sass-loader',
+						options: {
+							sourceMap: true,
+							api: 'modern' // 使用现代 Sass API
+						}
+					}
 				],
 				exclude: /node_modules/
 			},
